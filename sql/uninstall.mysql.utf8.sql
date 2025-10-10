@@ -1,0 +1,1 @@
+DROP TABLE #__plg_system_wttelegrambot ;
