@@ -1,12 +1,11 @@
 <?php
-
 /**
- * @package     WT SEO Meta templates
- * @version     2.0.3
- * @Author      Sergey Tolkachyov, https://web-tolk.ru
- * @copyright   Copyright (C) 2023 Sergey Tolkachyov
- * @license     GNU/GPL 3
- * @since       1.0.0
+ * @package    System - WT Telegram bot
+ * @version    1.1.0
+ * @Author     Sergey Tolkachyov, https://web-tolk.ru
+ * @copyright  (c) 2024 - September 2025 Sergey Tolkachyov. All rights reserved.
+ * @license    GNU/GPL3 http://www.gnu.org/licenses/gpl-3.0.html
+ * @since      1.0.0
  */
 
 namespace Joomla\Plugin\System\Wttelegrambot\Extension;
@@ -27,7 +26,6 @@ final class Wttelegrambot extends CMSPlugin implements SubscriberInterface
 	use DatabaseAwareTrait;
 
 	protected $autoloadLanguage = true;
-	protected $allowLegacyListeners = false;
 
 	/**
 	 *
@@ -71,17 +69,28 @@ final class Wttelegrambot extends CMSPlugin implements SubscriberInterface
 		$telegram_method = 'sendMessage';
 		$http            = (new HttpFactory())->getHttp([]);
 
-		$chat_id = $this->params->get('telegram_chat_id');
-		// Отдельные сообщения могут быть отправлены не в основной канал
-		if(array_key_exists('chat_id',$message_params) && !empty($message_params['chat_id']))
-		{
-			$chat_id = $message_params['chat_id'];
-		}
+        $chat_id = $this->params->get('telegram_chat_id');
+        $message_thread_id = $this->params->get('message_thread_id', null);
+        // Отдельные сообщения могут быть отправлены не в основной канал
+        if(array_key_exists('chat_id', $message_params) && !empty($message_params['chat_id']))
+        {
+            $chat_id = $message_params['chat_id'];
 
-		$tg_query = [
-			"chat_id"    => $chat_id,
-			"parse_mode" => "html",
-		];
+            if(array_key_exists('message_thread_id',$message_params) && !empty($message_params['message_thread_id']))
+            {
+                $message_thread_id = $message_params['message_thread_id'];
+            }
+        }
+
+        $tg_query = [
+            'chat_id'    => $chat_id,
+            'parse_mode' => 'html',
+        ];
+
+        if($message_thread_id) {
+            $tg_query['message_thread_id'] = $message_thread_id;
+            $tg_query['chat_id'] = $tg_query['chat_id'] .'_'.$message_thread_id;
+        }
 
 		//	    Отправка вложений
 		if (!empty($images))
@@ -203,7 +212,7 @@ final class Wttelegrambot extends CMSPlugin implements SubscriberInterface
 	 *
 	 *
 	 * @since 1.0.0
-	 * @link  https://github.com/wpsocio/telegram-format-text
+	 * @link       https://web-tolk.ru
 	 */
 	public function prepareMessageForTelegram(string $message):string
 	{
@@ -226,7 +235,7 @@ final class Wttelegrambot extends CMSPlugin implements SubscriberInterface
 	 *
 	 *
 	 * @since 1.0.0
-	 * @link  https://manual.joomla.org/docs/general-concepts/database/insert-data
+	 * @link       https://web-tolk.ru
 	 */
 	private function saveTelegramMessageId($telegram_response, array $message_params = []): void
 	{

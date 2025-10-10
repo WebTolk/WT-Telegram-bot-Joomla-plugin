@@ -3,11 +3,11 @@
     <name>System - WT Telegram bot</name>
     <author>Sergey Tolkachyov</author>
     <authorEmail>info@web-tolk.ru</authorEmail>
-    <authorUrl>https://web-tolk.ru/</authorUrl>
-    <creationDate>01.08.2025</creationDate>
-    <copyright>Sergey Tolkachyov</copyright>
+    <authorUrl>https://web-tolk.ru</authorUrl>
+    <creationDate>10.10.2025</creationDate>
+    <copyright>Copyright (c) 2024 - 2025 Sergey Tolkachyov. All rights reserved.</copyright>
     <license>GNU General Public License v3.0</license>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <description>PLG_WTTELEGRAMBOT_DESC</description>
     <namespace path="src">Joomla\Plugin\System\Wttelegrambot</namespace>
     <scriptfile>script.php</scriptfile>
@@ -39,7 +39,8 @@
                 <field addfieldprefix="Joomla\Plugin\System\Wttelegrambot\Fields" type="plugininfo" name="plugininfo"/>
                 <field addfieldprefix="Joomla\Plugin\System\Wttelegrambot\Fields" type="botinfo" name="botinfo"/>
                 <field type="text" name="telegram_api_token" label="PLG_WTTELEGRAMBOT_TELEGRAM_API_TOKEN"/>
-                <field type="text" name="telegram_chat_id" label="PLG_WTTELEGRAMBOT_TELEGRAM_CHAT_ID"/>
+                <field addfieldprefix="Joomla\Plugin\System\Wttelegrambot\Fields"  type="chatidinfo" name="telegram_chat_id" label="PLG_WTTELEGRAMBOT_TELEGRAM_CHAT_ID"/>
+                <field type="text" name="message_thread_id" label="PLG_WTTELEGRAMBOT_MESSAGE_THREAD_ID"/>
                 <field type="note" name="code_example" label="PLG_WTTELEGRAMBOT_CODE_EXAMPLE_LABEL" description="PLG_WTTELEGRAMBOT_CODE_EXAMPLE"/>
                 <field type="note" name="code_example_desc" label="PLG_WTTELEGRAMBOT_CODE_DESC_LABEL" description="PLG_WTTELEGRAMBOT_CODE_DESC"/>
             </fieldset>
