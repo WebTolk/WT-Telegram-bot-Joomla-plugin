@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    System - WT Telegram bot
- * @version    1.1.0
+ * @version    1.1.1
  * @Author     Sergey Tolkachyov, https://web-tolk.ru
  * @copyright  (c) 2024 - September 2025 Sergey Tolkachyov. All rights reserved.
  * @license    GNU/GPL3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -12,17 +12,12 @@
 
 use Joomla\CMS\Application\AdministratorApplication;
 use Joomla\CMS\Factory;
-use Joomla\CMS\Filesystem\File;
-use Joomla\CMS\Filesystem\Folder;
-use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Installer\Installer;
 use Joomla\CMS\Installer\InstallerHelper;
 use Joomla\CMS\Installer\InstallerAdapter;
 use Joomla\CMS\Installer\InstallerScriptInterface;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Log\Log;
 use Joomla\CMS\Plugin\PluginHelper;
-use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Version;
 use Joomla\Database\DatabaseDriver;
 use Joomla\DI\Container;
@@ -300,7 +295,7 @@ return new class () implements ServiceProviderInterface {
 
                 // Get an installer instance.
                 $installer = new Installer();
-
+                $installer->setDatabase($this->db);
                 /*
                  * Check for a Joomla core package.
                  * To do this we need to set the source path to find the manifest (the same first step as JInstaller::install())

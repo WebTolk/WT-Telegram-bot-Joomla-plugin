@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    System - WT Telegram bot
- * @version    1.1.0
+ * @version    1.1.1
  * @Author     Sergey Tolkachyov, https://web-tolk.ru
  * @copyright  (c) 2024 - September 2025 Sergey Tolkachyov. All rights reserved.
  * @license    GNU/GPL3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -14,7 +14,7 @@ use Joomla\CMS\Form\Field\NoteField;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Factory;
 
-defined('_JEXEC') or die;
+\defined('_JEXEC') or die;
 
 class PlugininfoField extends NoteField
 {

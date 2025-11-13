@@ -46,7 +46,7 @@ class ConverterException extends Exception {
 	/**
 	 * String representation of the object.
 	 *
-	 * @link  http://php.net/manual/en/exception.tostring.php
+	 * @link       https://web-tolk.ru
 	 *
 	 * @return string the string representation of the exception.
 	 */

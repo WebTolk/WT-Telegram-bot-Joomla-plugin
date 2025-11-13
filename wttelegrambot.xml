@@ -4,10 +4,10 @@
     <author>Sergey Tolkachyov</author>
     <authorEmail>info@web-tolk.ru</authorEmail>
     <authorUrl>https://web-tolk.ru</authorUrl>
-    <creationDate>10.10.2025</creationDate>
+    <creationDate>13.11.2025</creationDate>
     <copyright>Copyright (c) 2024 - 2025 Sergey Tolkachyov. All rights reserved.</copyright>
     <license>GNU General Public License v3.0</license>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <description>PLG_WTTELEGRAMBOT_DESC</description>
     <namespace path="src">Joomla\Plugin\System\Wttelegrambot</namespace>
     <scriptfile>script.php</scriptfile>

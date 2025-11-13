@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    System - WT Telegram bot
- * @version    1.1.0
+ * @version    1.1.1
  * @Author     Sergey Tolkachyov, https://web-tolk.ru
  * @copyright  (c) 2024 - September 2025 Sergey Tolkachyov. All rights reserved.
  * @license    GNU/GPL3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -10,14 +10,11 @@
 
 namespace Joomla\Plugin\System\Wttelegrambot\Fields;
 
-use Joomla\CMS\Event\AbstractEvent;
-use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Field\NoteField;
-use Joomla\CMS\Language\Text;
 use Joomla\Http\HttpFactory;
 use Joomla\Registry\Registry;
 
-defined('_JEXEC') or die;
+\defined('_JEXEC') or die;
 
 
 class BotinfoField extends NoteField
@@ -36,8 +33,11 @@ class BotinfoField extends NoteField
 		{
 			$http = (new HttpFactory())->getHttp();
 
-			$result   = $http->get('https://api.telegram.org/bot' . $telegram_api_token . '/getMe')->body;
-			$bot_info = json_decode($result);
+			$result   = $http->get('https://api.telegram.org/bot' . $telegram_api_token . '/getMe');
+            if ($result === null || $result->getStatusCode() !== 200) {
+                return '';
+            }
+			$bot_info = json_decode((string)$result->getBody());
 
 			if ($bot_info->ok && property_exists($bot_info, 'result'))
 			{
