@@ -40,8 +40,12 @@ class ChatidinfoField extends TextField
             ];
             $url = new Uri('https://api.telegram.org/bot' . $params->get('telegram_api_token') . '/getChat');
             $url->setQuery($tg_query);
-            $result = $http->get($url)->body;
-            $chat_info = json_decode($result);
+            $result = $http->get($url);
+
+            if ($result === null || $result->getStatusCode() !== 200) {
+                return $html;
+            }
+            $chat_info = json_decode((string)$result->getBody());
 
             if ($chat_info->ok && property_exists($chat_info, 'result'))
             {
